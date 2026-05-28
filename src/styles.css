@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  --panel: rgba(255, 255, 255, 0.055);
+  --panel-strong: rgba(255, 255, 255, 0.085);
+  --line: rgba(255, 255, 255, 0.11);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #020617;
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(79, 243, 255, 0.14), transparent 28%),
+    radial-gradient(circle at 90% 10%, rgba(155, 92, 255, 0.14), transparent 30%),
+    #020617;
+  font-family: Manrope, sans-serif;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  background: rgba(79, 243, 255, 0.35);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#4ff3ff, #9b5cff);
+  border: 3px solid #020617;
+  border-radius: 999px;
+}
+
+@layer components {
+  .section-padding {
+    @apply px-5 py-24 md:py-32 lg:px-8;
+  }
+
+  .glass-panel {
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035)),
+      rgba(255, 255, 255, 0.035);
+    border: 1px solid var(--line);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 24px 80px rgba(0, 0, 0, 0.32);
+    backdrop-filter: blur(24px);
+  }
+
+  .primary-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-bold text-ink transition duration-300;
+    background: linear-gradient(135deg, #4ff3ff 0%, #21e6a2 48%, #9b5cff 100%);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.14) inset,
+      0 18px 40px rgba(79, 243, 255, 0.18),
+      0 10px 30px rgba(155, 92, 255, 0.16);
+  }
+
+  .primary-button:hover {
+    transform: translateY(-2px);
+    filter: saturate(1.15);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.18) inset,
+      0 24px 54px rgba(79, 243, 255, 0.25),
+      0 16px 42px rgba(155, 92, 255, 0.2);
+  }
+
+  .secondary-button,
+  .ghost-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.055] px-5 py-3 text-sm font-bold text-white/80 backdrop-blur-xl transition duration-300;
+  }
+
+  .secondary-button:hover,
+  .ghost-button:hover {
+    @apply border-cyan-200/40 bg-cyan-200/10 text-white;
+    transform: translateY(-2px);
+  }
+
+  .ghost-button {
+    @apply px-4 py-2.5 text-xs;
+  }
+
+  .nav-link {
+    @apply inline-flex items-center gap-1 rounded-2xl px-4 py-2.5 text-sm font-semibold text-white/60 transition hover:bg-white/[0.065] hover:text-white;
+  }
+
+  .form-input {
+    @apply w-full rounded-2xl border border-white/10 bg-white/[0.055] px-4 py-3 text-white outline-none transition placeholder:text-white/30;
+  }
+
+  .form-input:focus {
+    @apply border-cyan-200/45 bg-white/[0.075] shadow-glow;
+  }
+}
+
+.mega-group:hover .mega-menu {
+  display: block;
+}
+
+.hero-mesh {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 76px 76px;
+  mask-image: linear-gradient(to bottom, black, transparent 92%);
+}
+
+.chart-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+.map-grid {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(79, 243, 255, 0.22), transparent 22%),
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    #030711;
+  background-size: 100% 100%, 34px 34px, 34px 34px, auto;
+}
+
+.marquee {
+  animation: marquee 32s linear infinite;
+}
+
+.loader-ring {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  border-radius: 999px;
+  background: conic-gradient(from 0deg, transparent, #4ff3ff, #21e6a2, #9b5cff, transparent);
+  animation: spin 1.05s linear infinite;
+  box-shadow: 0 0 70px rgba(79, 243, 255, 0.26);
+}
+
+.loader-ring::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: inherit;
+  background: #020617;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
